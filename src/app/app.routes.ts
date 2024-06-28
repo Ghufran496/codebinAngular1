@@ -4,15 +4,27 @@ import { SignupComponent } from './components/signup/signup.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AboutComponent } from './components/about/about.component';
 import { CreateBinComponent } from './components/create-bin/create-bin.component';
+import { authGuard } from './auth.guard';
+import { HomeComponent } from './components/home/home.component';
+import { ViewSnippetComponent } from './components/view-snippet/view-snippet.component';
+import { DefferdemoComponent } from './components/defferdemo/defferdemo.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'create', component: CreateBinComponent },
-  { path: 'about', loadComponent: () => import('./components/about/about.component').then(mod => mod.AboutComponent) },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  
+  { path: 'create', component: CreateBinComponent, canActivate: [authGuard] },
+  { path: 'demo', component: DefferdemoComponent },
+  {
+    path: 'about',
+    loadComponent: () =>
+      import('./components/about/about.component').then(
+        (mod) => mod.AboutComponent
+      ),
+  },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
+  { path: 'snippet/:id', component: ViewSnippetComponent },
 
   //this 404 page line should be at the end.
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent },
 ];

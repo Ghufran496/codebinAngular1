@@ -1,0 +1,36 @@
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium sequi distinctio magni hic eius consectetur natus autem et. Atque hic quaerat eligendi! Expedita, quae vitae dicta enim nostrum nihil quia!</p>
+<button type="button" #greeting>Hello!</button>
+
+
+<!-- using viewport: bundle will be fetched when this comp come into our pc view other wise not -->
+<!-- @defer(on viewport){
+  <app-heavy></app-heavy>  
+} -->
+
+
+<!-- using interaction: bundle will be fetched when we will interact with this comp mean when we click on it or some other things -->
+<!-- @defer(on interaction){
+  <app-heavy></app-heavy>  
+} -->
+
+<!-- using interaction(paramter): bundle will be fetched when we will interact with this comp 
+ using same element with this id that will we pass as parameter -->
+
+<!-- @defer(on interaction(greeting)){
+  <app-heavy></app-heavy>  
+} -->
+
+<!-- when you hover over this elemnt then this bundle will be fetched and showed to users on UI  -->
+ 
+@defer(on hover(greeting)){
+  <app-heavy></app-heavy>  
+}@placeholder{
+  <h3>this is place holder</h3>
+}
+@loading(after 100ms; minimum 1s){
+    <h3>Content is loading</h3>
+}@error{
+    <h3>Error while loading heavy componet</h3>
+}
+
